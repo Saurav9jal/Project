@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+      background-color : brown;
+}
+
+h1 { 
+	 color: orange;
+	 text-align: center;
+	 font-family:"Comic Sans MS"
+	 font-size:35px
+}
+
+h2{ 
+	color: orange;
+	 text-align: center;
+	 font-family:"Comic Sans MS"
+	 font-size:35px
+	
+}
+
+p {
+ 		font-family:"Comic Sans MS";
+ 		font-size:20px;
+}
+</style>
+<form action="/" method="post" >
+{% csrf_token %}
+<body>
+<h1>
+{{form.as_p}} <input type="submit" value="Search">
+</h1>
+<p>{% if result %}
+	{% for title,url in result.items %}
+	</br>
+	</br>
+	    <li><input type='hidden' value='{{url}}' name='url'>
+	    	<input type='hidden' value = '{{title}}' name='title' >
+	    <button type="submit" formmethod="post" formaction= "{{url}}"  > {{title}} </button>                
+        <input type="checkbox" name="select-id" value={{url}}/>
+    {% endfor %}
+    </br>
+    </br>
+    <h2>
+    Check the button of the respective website then click on the submit button below</br>
+    <button type="submit" formmethod="post" >Submit</button>
+    </h2>
+{% endif %}
+</form><hr>
+</p>
+</body>
+</html>
